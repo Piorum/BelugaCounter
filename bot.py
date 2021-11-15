@@ -4,11 +4,9 @@ import math
 import keyboard
 import pyautogui
 import cv2 as cv
-import numpy as np
 from PIL import Image
 import win32api, win32con
 from pytesseract import *
-from matplotlib import pyplot as plt
 pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 output = '1'
