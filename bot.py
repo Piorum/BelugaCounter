@@ -27,18 +27,17 @@ while True:
         ret3,th3 = cv.threshold(blur,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
         cv.imwrite('ScreenshotProccesed.png', th3)
         output = pytesseract.image_to_string(th3)
-        output = output.replace('i','1')
-        output = output.replace('I','1')
-        output = output.replace('l','1')
-        output = output.replace('|','1')
-        output = output.replace('!','1')
+        symbols = ['i', 'l', '|', '!', 'I']
+        for x in symbols:
+            output = output.replace(x,'1')
         numeric_filter = filter(str.isdigit, output)
         output = "".join(numeric_filter)
-        if int(outputL) != int(output):
-            output = int(output) + 1
-            keyboard.write(str(output))
-            keyboard.press_and_release('enter')
-            outputL = output
-            time.sleep(11)
+        if len(output) == 6:
+            if int(outputL) != int(output):
+                output = int(output) + 1
+                keyboard.write(str(output))
+                keyboard.press_and_release('enter')
+                outputL = output
+                time.sleep(11)
     except:
-        print('ERROR: ' + str(output) + ' ' + str(outputL))
+        print("ERROR: '" + str(output) + "' '" + str(outputL) + "'")
